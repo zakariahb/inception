@@ -1,7 +1,20 @@
+# Use Alpine as the base image
 FROM alpine:3.22
 
-RUN apk update && apk add nginx openssl
+# Install nginx
+RUN apk update && apk add --no-cache nginx openssl
 
-EXPOSE  443
+# Create required directories
+RUN openssl req -x509 -nodes -days 365 \
+-newkey rsa:2048 \
+-keyout nginx.key \
+-out nginx.crt \
+-subj "/C=MA/ST=Khouribga/L=Khouribga/O=MyCompany/CN=localhost"
+# Copy custom nginx config (optional)
+# COPY nginx.conf /etc/nginx/nginx.conf
 
-CMD ["nginx", "-g" , "daemon off;"]
+# Expose HTTP port
+EXPOSE 80
+
+# Start nginx in foreground
+CMD ["nginx", "-g", "daemon off;"]

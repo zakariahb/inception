@@ -11,8 +11,8 @@ RUN openssl req -x509 -nodes -days 365 \
 -out nginx.crt \
 -subj "/C=MA/ST=Khouribga/L=Khouribga/O=MyCompany/CN=localhost"
 # Copy custom nginx config (optional)
-# COPY nginx.conf /etc/nginx/nginx.conf
-
+# COPY nginx.conf 
+COPY nginx.conf /etc/nginx/nginx.conf
 # Expose HTTP port
 EXPOSE 80
 

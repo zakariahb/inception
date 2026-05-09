@@ -5,6 +5,8 @@ FROM alpine:3.22
 RUN apk update && apk add --no-cache nginx openssl
 
 # Create required directories
+RUN mkdir -p /var/www/html && \
+    echo "<html><body><h1>Welcome to nginx</h1><p>Hello from Docker</p></body></html>" > /var/www/html/zakaria.html
 RUN openssl req -x509 -nodes -days 365 \
 -newkey rsa:2048 \
 -keyout /etc/nginx/zalaksya.key \

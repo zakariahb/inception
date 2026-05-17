@@ -1,7 +1,7 @@
 services:
   nginx:
     build: requirements/nginx
-  mriadb:
-    build: requirements/mariadb
   wordpress:
     build: requirements/wordpress
+  mriadb:
+    build: requirements/mariadb

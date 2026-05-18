@@ -5,3 +5,5 @@ services:
     build: requirements/wordpress
   mriadb:
     build: requirements/mariadb
+volumes:
+  

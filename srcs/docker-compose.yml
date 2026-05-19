@@ -1,9 +1,17 @@
 services:
   nginx:
     build: requirements/nginx
+    ports: 
+      - "443:443"
   wordpress:
+
     build: requirements/wordpress
+    ports:
+      - "3306:3306"
+    volumes:
+    - wp:/var/www/html
   mriadb:
     build: requirements/mariadb
 volumes:
+  wp:
   

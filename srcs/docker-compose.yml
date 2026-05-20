@@ -3,15 +3,16 @@ services:
     build: requirements/nginx
     ports: 
       - "443:443"
+    networks:
+      - inception
   wordpress:
 
     build: requirements/wordpress
-    ports:
-      - "3306:3306"
-    volumes:
-    - wp:/var/www/html
+    networks:
+      - inception
   mriadb:
     build: requirements/mariadb
-volumes:
-  wp:
-  
+    networks:
+      - inception
+networks:
+  inception:

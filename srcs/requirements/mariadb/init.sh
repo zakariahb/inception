@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+rm -rf /tmp/init.sql
+rm -rf /var/lib/mysql/*
 INIT_DB=/tmp/init.sql
 
 cat > "$INIT_DB" <<EOF

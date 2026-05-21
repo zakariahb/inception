@@ -1,18 +1,35 @@
 services:
   nginx:
     build: requirements/nginx
-    ports: 
+    ports:
       - "443:443"
     networks:
       - inception
-  wordpress:
+    volumes:
+      - wordpress:/var/www/html
+    depends_on:
+      - wordpress
 
+  wordpress:
     build: requirements/wordpress
     networks:
       - inception
-  mriadb:
+    volumes:
+      - wordpress:/var/www/html
+    depends_on:
+      - mariadb
+    environment:
+      WORDPRESS_DB_HOST: ${MYSQL_HOST}
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+  mariadb:
     build: requirements/mariadb
     networks:
       - inception
+
 networks:
   inception:
+
+volumes:
+  wordpress:

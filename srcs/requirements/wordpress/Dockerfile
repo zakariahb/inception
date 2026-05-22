@@ -16,8 +16,5 @@ RUN chown -R www-data:www-data /var/www/html
 
 
 COPY conf/wordpress.conf  /etc/php/8.2/fpm/pool.d/wordpress.conf
-
-COPY init.sh /init.sh
-RUN chmod +x /init.sh
-
-ENTRYPOINT ["/init.sh"]
+COPY conf/wp-config.php /var/www/html/wp-config.php
+CMD ["php-fpm8.2", "-F"]

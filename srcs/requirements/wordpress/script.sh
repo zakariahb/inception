@@ -1,7 +1,24 @@
 #!/bin/bash
 
 if [ ! -f /var/www/html/wp-config.php ]; then
-    cp /tmp/wp-config.php /var/www/html/
-fi
+    curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+    chmod +x wp-cli.phar
+    mv wp-cli.phar /usr/local/bin/wp
+    wp core download --locale=en_US --allow-root
+    
+    echo $DATABASE
+    echo $USER
+    echo $PASSWORD
+    echo $HOSTcat
+    wp config create --path="/var/www/html" --dbname=$DATABASE --dbuser=$USER --dbpass=$PASSWORD --dbhost=$HOST --allow-root
+    wp core install \
+        --url=$HOSTNAME \
+        --title=$TITLE \
+        --admin_user=$ADMIN \
+        --admin_password=$ADMINPASS \
+        --admin_email=$ADMINEMAIL \
+        --allow-root \
+        --skip-email \
 
+fi
 exec php-fpm8.2 -F

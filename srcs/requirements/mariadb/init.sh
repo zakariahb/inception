@@ -6,9 +6,9 @@ rm -rf /tmp/init.sql/tmp/init.sql
 INIT_DB=/tmp/init.sql
 
 cat > "$INIT_DB" <<EOF
-CREATE DATABASE IF NOT EXISTS wordpress;
-CREATE USER 'wordpress'@'%' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'%';
+CREATE DATABASE IF NOT EXISTS $DATABASE;
+CREATE USER $USER@'%' IDENTIFIED BY $PASSWORD;
+GRANT ALL PRIVILEGES ON $DATABASE.* TO $USER@'%';
 FLUSH PRIVILEGES;
 EOF
 

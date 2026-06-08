@@ -1,16 +1,12 @@
 #!/bin/bash
-
+cd /var/www/html/
 if [ ! -f /var/www/html/wp-config.php ]; then
     curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
     chmod +x wp-cli.phar
     mv wp-cli.phar /usr/local/bin/wp
     wp core download --locale=en_US --allow-root
     
-    echo $DATABASE
-    echo $USER
-    echo $PASSWORD
-    echo $HOSTcat
-    wp config create --path="/var/www/html" --dbname=$DATABASE --dbuser=$USER --dbpass=$PASSWORD --dbhost=$HOST --allow-root
+    wp config create --path="/var/www/html/" --dbname=$DATABASE --dbuser=$USER --dbpass=$PASSWORD --dbhost=$HOST:3306 --allow-root
     wp core install \
         --url=$HOSTNAME \
         --title=$TITLE \

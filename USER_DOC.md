@@ -1,21 +1,33 @@
-cd /var/www/html
-set -e
+# Services Provided by the Stack
 
-if [ ! -f wp-config.php ]; then
-    echo "Downloading WordPress..."
-    ls -la
-    wp core download --allow-root || echo "Error: wp core download"
-    wp config create --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PASSWORD --dbhost=$DB_HOST --allow-root || echo "Error: wp config create"
-    wp core install --url=$WORDPRESS_URL --title=$WORDPRESS_TITLE --admin_user=$WORDPRESS_ADMIN_USER --admin_password=$WORDPRESS_ADMIN_PASSWORD --admin_email=$WORDPRESS_ADMIN_EMAIL --allow-root || echo "Error: wp core install"
-    wp user create $WP_GST_USER $WP_GST_EMAIL --role=author --user_pass=$WP_GST_PASSWORD --allow-root || echo "Error: wp user create"
-    echo "WordPress downloaded and configured."
-else
-    echo "WordPress is already downloaded."
-fi
+**WordPress** is a free, open-source application used to build and manage websites.
+**NGINX** is a web server that accepts user requests and serves the WordPress website over HTTPS.
+**MariaDB** is a database management system (DBMS) that stores and manages WordPress data, such as posts, users, and settings.
 
-# Set proper permissions
-chown -R www-data:www-data /var/www/html
-chmod -R 755 /var/www/html
+# Start and stop the project 
 
-echo "Starting PHP-FPM..."
-php-fpm7.4 -F
+for starting the project we need the build the image and run the containers , we can do that with two commads :
+
+- make build : this command build the images .
+- make up : run the containers.
+
+for stoping  the containers 
+
+- make down : this command stops and remouves the containers
+- make prune : this command clear everything , containers , volumes , and the networks.
+
+# Access the website and the administration panel 
+
+website : https://zalaksya.42.fr
+administration panel : https://zalaksya.42.fr/wp-admin
+
+# Locate and manage credentials
+
+Users can view, update, and manage their login credentials securely.
+
+# Check that the services are running correctly
+
+- docker ps : check if the containers are running correctly.
+- docker ps -a : list all the containers the running and the stoped containers.
+- docker logs <container_name> : if a container not running , the logs are checked like this.
+

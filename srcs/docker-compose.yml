@@ -6,27 +6,48 @@ services:
     networks:
       - inception
     volumes:
-      - wordpress:/var/www/html
+      - wordpress_vol:/var/www/html
     depends_on:
       - wordpress
-
   wordpress:
     build: requirements/wordpress
     networks:
       - inception
     volumes:
-      - wordpress:/var/www/html
+      - wordpress_vol:/var/www/html
     depends_on:
-      - mariadb
+      mariadb:
+        condition: service_healthy
     env_file:
       - .env
   mariadb:
+    healthcheck:
+      test: ["CMD-SHELL", "mariadb -u root -p'$PASSWORD' -e 'SELECT 1;' || exit 1"]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
     build: requirements/mariadb
     networks:
       - inception
+    env_file:
+      - .env
+    volumes:
+      - mariadb_vol:/var/lib/mysql
 
 networks:
   inception:
 
 volumes:
-  wordpress:
+  wordpress_vol:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /tmp/
+  mariadb_vol:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /tmp/

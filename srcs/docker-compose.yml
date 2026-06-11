@@ -40,14 +40,16 @@ networks:
 
 volumes:
   wordpress_vol:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /tmp/
   mariadb_vol:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /tmp/
+  # wordpress_vol:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     o: bind
+  #     device: /tmp/
+  # mariadb_vol:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     o: bind
+  #     device: /tmp/

@@ -13,8 +13,7 @@ if [ ! -f /var/www/html/wp-config.php ]; then
         --admin_user=$ADMIN \
         --admin_password=$ADMINPASS \
         --admin_email=$ADMINEMAIL \
-        --allow-root \
-        --skip-email \
+        --allow-root 
 
 fi
 exec php-fpm8.2 -F

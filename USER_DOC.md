@@ -13,6 +13,7 @@ for starting the project we need the build the image and run the containers , we
 
 for stoping  the containers 
 
+- make stop : stops the running containers
 - make down : this command stops and remouves the containers
 - make prune : this command clear everything , containers , volumes , and the networks.
 

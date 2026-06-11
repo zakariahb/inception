@@ -12,6 +12,8 @@ The project aims to strengthen understanding of system administration concepts b
   this first command in the makefile that build each image in the docker compose.
 - make up :
   this command run containers separetly.
+- make stop :
+  this command stops the running containers
 - make down :
   this command stops and remouves the conatiners.
 - make prune :

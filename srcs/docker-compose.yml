@@ -40,14 +40,16 @@ networks:
 
 volumes:
   wordpress_vol:
+    name: wordpress_vol
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: "${HOME}/data/wordpress"
+      device: /Users/client/data/wordpress
   mariadb_vol:
+    name: mariadb_vol
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: "${HOME}/data/mariadb"
+      device: /Users/client/data/mariadb

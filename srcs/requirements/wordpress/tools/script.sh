@@ -14,6 +14,13 @@ if [ ! -f /var/www/html/wp-config.php ]; then
         --admin_password=$ADMINPASS \
         --admin_email=$ADMINEMAIL \
         --allow-root 
+    echo $USERNAME
+    echo $USEREMAIL
+    echo $ROLE
+    echo $USERPASS
+    wp user create $USERNAME $USEREMAIL --role=$ROLE \
+        --user_pass=$USERPASS \
+        --allow-root
 
 fi
 exec php-fpm8.2 -F

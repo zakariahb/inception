@@ -13,4 +13,4 @@ down :
 	docker-compose -f srcs/docker-compose.yml down
 prune : down
 		docker system prune -a --volumes -f
-		rm -rf ${HOME}/data
+		rm -rf ${HOME}/data/*  

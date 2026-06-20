@@ -1,5 +1,4 @@
 #!/bin/sh
-set -e
 
 INIT_DB=/tmp/init.sql
 
@@ -15,4 +14,4 @@ if [ ! -d /var/lib/mysql/mysql ]; then
     mariadb-install-db --user=mysql --datadir=/var/lib/mysql
 fi
 
-mysqld --user=mysql --init-file="$INIT_DB"
+exec mysqld --user=mysql --init-file="$INIT_DB"

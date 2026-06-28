@@ -1,8 +1,7 @@
-build: setup
-	docker-compose -f srcs/docker-compose.yml build
-setup:
+build:
 	mkdir -p ${HOME}/data/mariadb
 	mkdir -p ${HOME}/data/wordpress
+	docker-compose -f srcs/docker-compose.yml build
 up:
 	docker-compose -f srcs/docker-compose.yml up -d
 start :	
@@ -13,4 +12,4 @@ down :
 	docker-compose -f srcs/docker-compose.yml down
 prune : down
 		docker system prune -a --volumes -f
-		rm -rf ${HOME}/data/*  
+		rm -rf ${HOME}/data

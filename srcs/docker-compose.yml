@@ -1,7 +1,8 @@
 services:
   nginx:
     build: requirements/nginx
-    restart: on-failure
+    image: nginx
+    container_name: nginx
     ports:
       - "443:443"
     networks:
@@ -12,26 +13,20 @@ services:
       - wordpress
   wordpress:
     build: requirements/wordpress
-    restart: on-failure
+    image: wordpress
+    container_name: wordpress
     networks:
       - inception
     volumes:
       - wordpress_vol:/var/www/html
     depends_on:
-      mariadb:
-        condition: service_healthy
+      - mariadb
     env_file:
       - .env
   mariadb:
-    healthcheck:
-      test: ["CMD-SHELL", "mariadb -u root -p'$PASSWORD' -e 'SELECT 1;' || exit 1"]
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      start_period: 10s
-      interval: 10s
-      timeout: 5s
-      retries: 3
+    image: mariadb
+    container_name: mariadb
     build: requirements/mariadb
-    restart: on-failure
     networks:
       - inception
     env_file:
@@ -41,6 +36,7 @@ services:
 
 networks:
   inception:
+    name: inception
 
 volumes:
   wordpress_vol:
@@ -49,11 +45,11 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /Users/client/data/wordpress
+      device: /tmp/
   mariadb_vol:
     name: mariadb_vol
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /Users/client/data/mariadb
+      device: /tmp/

@@ -6,7 +6,7 @@ if [ ! -f /var/www/html/wp-config.php ]; then
     mv wp-cli.phar /usr/local/bin/wp
     wp core download --locale=en_US --allow-root
     
-    wp config create --path="/var/www/html/" --dbname=$DATABASE --dbuser=$USER --dbpass=$PASSWORD --dbhost=$HOST:3306 --allow-root
+    wp config create --path="/var/www/html/" --dbname=$DATABASE --dbuser=$USER --dbpass=$PASSWORD --dbhost=$HOST --allow-root
     wp core install \
         --url=$HOSTNAME \
         --title=$TITLE \

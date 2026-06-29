@@ -1,3 +1,5 @@
+all: build up
+	
 build:
 	mkdir -p ${HOME}/data/mariadb
 	mkdir -p ${HOME}/data/wordpress
@@ -12,4 +14,4 @@ down :
 	docker-compose -f srcs/docker-compose.yml down
 prune : down
 		docker system prune -a --volumes -f
-		rm -rf ${HOME}/data
+		rm -rf /home/zlaksya/data

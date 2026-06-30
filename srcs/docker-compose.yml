@@ -33,7 +33,7 @@ services:
     env_file:
       - .env
     healthcheck:
-      test: ["CMD-SHELL", "mariadb -u root -p'$PASSWORD' -e 'SELECT 1;' || exit 1"]
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       start_period: 10s
       interval: 10s
       timeout: 5s

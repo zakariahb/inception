@@ -33,11 +33,7 @@ services:
     env_file:
       - .env
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      start_period: 10s
-      interval: 10s
-      timeout: 5s
-      retries: 3
+       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
     volumes:
       - mariadb_vol:/var/lib/mysql
 

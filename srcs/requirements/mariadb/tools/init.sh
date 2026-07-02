@@ -10,9 +10,13 @@ GRANT ALL PRIVILEGES ON $DATABASE.* TO '$USER'@'%';
 FLUSH PRIVILEGES;
 EOF
 
+echo $DATABASE;
+echo $USER;
+echo $PASSWORD;
 
 if [ ! -d /var/lib/mysql/mysql ]; then
+	echo "1\n"
     mariadb-install-db --user=mysql --datadir=/var/lib/mysql
 fi
+exec mysqld --user=mysql --init-file="$INIT_DB"
 
-mysqld --user=mysql --init-file="$INIT_DB"

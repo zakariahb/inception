@@ -11,7 +11,7 @@ start :
 stop :	
 	docker-compose -f srcs/docker-compose.yml stop
 down :	
-	docker-compose -f srcs/docker-compose.yml down
+	docker-compose -f srcs/docker-compose.yml down -v
 prune : down
 	docker system prune -a --volumes -f
 	rm -rf /home/zalaksya/data/wordpress

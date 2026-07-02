@@ -18,8 +18,9 @@ docker compose up → start the containers
 View running containers: **docker ps**
 View all containers: **docker ps -a**
 View logs: **docker logs <container_name>**
-Stop a container: **docker stop <container_name>**
-Remove containers and volumes: **docker compose down -v**
+Stop a container: **make stop <container_name>**
+Remove containers and volumes: **make dowm**
+Clean everything : **sudo make prune***
 
 # Identify where the project data is stored and how it persists
 

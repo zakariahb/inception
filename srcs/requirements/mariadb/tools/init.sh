@@ -10,9 +10,6 @@ GRANT ALL PRIVILEGES ON $DATABASE.* TO '$USER'@'%';
 FLUSH PRIVILEGES;
 EOF
 
-echo $DATABASE;
-echo $USER;
-echo $PASSWORD;
 
 if [ ! -d /var/lib/mysql/mysql ]; then
 	echo "1\n"

@@ -13,6 +13,7 @@ if [ ! -f /var/www/html/wp-config.php ]; then
         --admin_user=$ADMIN \
         --admin_password=$ADMINPASS \
         --admin_email=$ADMINEMAIL \
+        --skip-email \
         --allow-root 
     wp user create $USERNAME $USEREMAIL --role=$ROLE \
         --user_pass=$USERPASS \

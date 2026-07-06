@@ -14,6 +14,6 @@ down :
 	docker compose -f srcs/docker-compose.yml down -v
 prune : down
 	docker system prune -a --volumes -f
-	rm -rf /home/zalaksya/data/wordpress
-	rm -rf /home/zalaksya/data/mariadb
-	rm -rf /home/zalaksya/data
+	rm -rf /Users/client/data/wordpress
+	rm -rf /Users/client/data/mariadb
+	rm -rf /Users/client/data
